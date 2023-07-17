@@ -10,4 +10,8 @@ for run application,
 
 docker-compose up --build
 
+Postman Collection : BankAPP-Colletions.postman_collection.json
+
+
+
 
