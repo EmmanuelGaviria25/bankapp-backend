@@ -13,7 +13,6 @@ import java.sql.Date;
 @NoArgsConstructor
 public class MovementCreateRequest {
 
-    @NotEmpty(message = "Value may not be empty")
     @NotEmpty(message = "Account Id may not be empty")
     private String accountId;
 
