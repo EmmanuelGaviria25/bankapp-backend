@@ -1,6 +1,7 @@
 package com.emma.gaviria.bankapp.infrastructure.adapters.output.persistence.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -14,14 +15,15 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MovementEntity {
+public class MovementEntity  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer"})
     private AccountEntity account;
 
     @DateTimeFormat(pattern="dd/MM/yyyy")
@@ -31,5 +33,6 @@ public class MovementEntity {
 
     private String value;
 
-    private String balance;
+    private Double balance;
+
 }

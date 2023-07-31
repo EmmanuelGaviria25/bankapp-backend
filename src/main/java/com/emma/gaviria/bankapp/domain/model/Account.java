@@ -2,6 +2,8 @@ package com.emma.gaviria.bankapp.domain.model;
 
 import lombok.*;
 
+import java.util.List;
+
 
 @Builder
 @Getter
@@ -23,4 +25,7 @@ public class Account {
     private String initialBalance;
 
     private Boolean status;
+
+    private List<Movement> movements;
+
 }

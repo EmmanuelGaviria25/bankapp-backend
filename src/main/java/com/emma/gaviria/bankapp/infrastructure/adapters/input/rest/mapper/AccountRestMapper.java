@@ -5,6 +5,7 @@ import com.emma.gaviria.bankapp.infrastructure.adapters.input.rest.data.request.
 import com.emma.gaviria.bankapp.infrastructure.adapters.input.rest.data.request.account.AccountUpdateRequest;
 import com.emma.gaviria.bankapp.infrastructure.adapters.input.rest.data.response.account.AccountQueryResponse;
 import com.emma.gaviria.bankapp.infrastructure.adapters.input.rest.data.response.account.AccountResponse;
+import com.emma.gaviria.bankapp.infrastructure.adapters.input.rest.data.response.account.AccountStatementResponse;
 import org.mapstruct.Mapper;
 
 @Mapper
@@ -18,5 +19,6 @@ public interface AccountRestMapper {
 
     AccountQueryResponse toAccountQueryResponse(Account account);
 
+    AccountStatementResponse toAccountStatementResponse(Account account);
 
 }

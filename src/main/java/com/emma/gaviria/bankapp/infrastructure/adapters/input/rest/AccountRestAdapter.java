@@ -1,16 +1,14 @@
 package com.emma.gaviria.bankapp.infrastructure.adapters.input.rest;
 
-import com.emma.gaviria.bankapp.application.ports.input.account.CreateAccountUseCase;
-import com.emma.gaviria.bankapp.application.ports.input.account.DeleteAccountUseCase;
-import com.emma.gaviria.bankapp.application.ports.input.account.GetAccountUseCase;
-import com.emma.gaviria.bankapp.application.ports.input.account.UpdateAccountUseCase;
+import com.emma.gaviria.bankapp.application.ports.input.account.*;
 import com.emma.gaviria.bankapp.domain.model.Account;
 import com.emma.gaviria.bankapp.infrastructure.adapters.input.rest.data.request.account.AccountCreateRequest;
+import com.emma.gaviria.bankapp.infrastructure.adapters.input.rest.data.request.account.AccountStatementRequest;
 import com.emma.gaviria.bankapp.infrastructure.adapters.input.rest.data.request.account.AccountUpdateRequest;
+import com.emma.gaviria.bankapp.infrastructure.adapters.input.rest.data.response.account.AccountStatementResponse;
 import com.emma.gaviria.bankapp.infrastructure.adapters.input.rest.data.response.account.AccountQueryResponse;
 import com.emma.gaviria.bankapp.infrastructure.adapters.input.rest.data.response.account.AccountResponse;
 import com.emma.gaviria.bankapp.infrastructure.adapters.input.rest.mapper.AccountRestMapper;
-import com.emma.gaviria.bankapp.infrastructure.adapters.input.rest.mapper.PersonRestMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -18,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 
 @RestController
 @RequestMapping("/v1")
@@ -32,6 +31,8 @@ public class AccountRestAdapter {
     private final GetAccountUseCase getAccountUseCase;
 
     private final DeleteAccountUseCase deleteAccountUseCase;
+
+    private final ReportAccountStatementUseCase reportAccountStatementUseCase;
 
     private final AccountRestMapper accountRestMapper;
 
@@ -62,4 +63,9 @@ public class AccountRestAdapter {
         return new ResponseEntity<>("Account deleted", HttpStatus.OK);
     }
 
+    @PostMapping(value = "/accounts/statement/report")
+    public ResponseEntity<AccountStatementResponse> reportAccountStatement(@RequestBody @Valid AccountStatementRequest accountStatementRequest) throws ParseException {
+        Account account = reportAccountStatementUseCase.reportAccountStatement(accountStatementRequest);
+        return new ResponseEntity<>(accountRestMapper.toAccountStatementResponse(account), HttpStatus.OK);
+    }
 }

@@ -1,3 +1,15 @@
 spring:
   application:
     name: Bank App
+
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bankapp-db
+    username: bankapp
+    password: bankapp
+    driverClassName: org.postgresql.Driver
+

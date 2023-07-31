@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.emma.gaviria.bankapp.domain.exception.ProductNotFound;
+import com.emma.gaviria.bankapp.domain.exception.*;
 import com.emma.gaviria.bankapp.infrastructure.adapters.output.customizedexception.data.response.ExceptionResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,11 +14,11 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-@ControllerAdvice
-@RestController
+@RestControllerAdvice
 public class CustomizedExceptionAdapter extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
@@ -28,7 +28,7 @@ public class CustomizedExceptionAdapter extends ResponseEntityExceptionHandler {
         return new ResponseEntity(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(ProductNotFound.class)
+    @ExceptionHandler({ProductNotFound.class, PersonNotFound.class, ClientNotFound.class, AccountNotFound.class, MovementNotFound.class})
     public final ResponseEntity<Object> handleUserNotFoundException(ProductNotFound ex, WebRequest request) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(), ex.getMessage(), Arrays.asList(request.getDescription(false)));
 

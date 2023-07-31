@@ -6,9 +6,9 @@ cd ./src/main/docker
 
 cp ../../../target/bankapp-0.0.1-SNAPSHOT.jar ../../../src/main/docker
 
-for run application, 
+For run application, 
 
-docker-compose up --build
+docker-compose up --build -d
 
 Postman Collection : BankAPP-Colletions.postman_collection.json
 

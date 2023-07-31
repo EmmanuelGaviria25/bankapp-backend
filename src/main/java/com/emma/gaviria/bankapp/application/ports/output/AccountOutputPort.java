@@ -12,5 +12,7 @@ public interface AccountOutputPort {
 
     Optional<Account> getAccountById(Long id);
 
+    Optional<Account> getAccountActiveById(Long id);
+
     void deleteAccountById(Long id);
 }

@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 public class ClientCreateRequest {
 
     @NotEmpty(message = "Person Id may not be empty")
-    private String personId;
+    private Long personId;
 
     @NotEmpty(message = "Password may not be empty")
     private String password;

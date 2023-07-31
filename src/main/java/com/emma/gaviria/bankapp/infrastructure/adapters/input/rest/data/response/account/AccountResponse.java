@@ -1,11 +1,13 @@
 package com.emma.gaviria.bankapp.infrastructure.adapters.input.rest.data.response.account;
 
+import com.emma.gaviria.bankapp.domain.model.Movement;
 import com.emma.gaviria.bankapp.infrastructure.adapters.input.rest.data.response.client.ClientResponse;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Builder
 @Getter
@@ -26,4 +28,5 @@ public class AccountResponse {
 
     private String initialBalance;
 
+    private List<Movement> movements;
 }

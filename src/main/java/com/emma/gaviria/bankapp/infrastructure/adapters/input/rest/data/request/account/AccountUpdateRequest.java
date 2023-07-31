@@ -14,13 +14,14 @@ import javax.validation.constraints.Size;
 public class AccountUpdateRequest {
 
     @NotEmpty(message = "Id may not be empty")
-    private String id;
+    private Long id;
 
     @NotEmpty(message = "Person Id may not be empty")
-    private String clientId;
+    private Long clientId;
 
     @Size(max = 999999999, message = "Number may not be empty")
-    private String number;
+    private Long number;
+
 
     @NotEmpty(message = "Type may not be empty")
     private String type;

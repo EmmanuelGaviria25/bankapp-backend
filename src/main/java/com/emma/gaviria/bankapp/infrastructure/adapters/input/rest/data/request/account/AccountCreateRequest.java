@@ -15,10 +15,10 @@ import javax.validation.constraints.Size;
 public class AccountCreateRequest {
 
     @NotEmpty(message = "Person Id may not be empty")
-    private String clientId;
+    private Long clientId;
 
     @Size(max = 999999999, message = "Number may not be empty")
-    private String number;
+    private Long number;
 
     @NotEmpty(message = "Type may not be empty")
     private String type;

@@ -14,10 +14,10 @@ import javax.validation.constraints.NotNull;
 public class ClientUpdateRequest {
 
     @NotEmpty(message = "Id may not be empty")
-    private String id;
+    private Long id;
 
     @NotEmpty(message = "Person Id may not be empty")
-    private String personId;
+    private Long personId;
 
     @NotEmpty(message = "Password may not be empty")
     private String password;

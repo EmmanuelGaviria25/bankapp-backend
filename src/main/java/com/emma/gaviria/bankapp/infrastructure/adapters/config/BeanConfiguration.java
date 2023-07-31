@@ -1,5 +1,6 @@
 package com.emma.gaviria.bankapp.infrastructure.adapters.config;
 
+import com.emma.gaviria.bankapp.application.ports.output.MovementOutputPort;
 import com.emma.gaviria.bankapp.domain.service.*;
 import com.emma.gaviria.bankapp.infrastructure.adapters.output.eventpublisher.*;
 import com.emma.gaviria.bankapp.infrastructure.adapters.output.persistence.*;
@@ -82,8 +83,8 @@ public class BeanConfiguration {
 
     @Bean
     public AccountService accountService(AccountPersistenceAdapter accountPersistenceAdapter, AccountEventPublisherAdapter accountEventPublisherAdapter,
-                                         ClientPersistenceAdapter clientPersistenceAdapter) {
-        return new AccountService(accountPersistenceAdapter, accountEventPublisherAdapter, clientPersistenceAdapter);
+                                         ClientPersistenceAdapter clientPersistenceAdapter, MovementOutputPort movementOutputPort) {
+        return new AccountService(accountPersistenceAdapter, accountEventPublisherAdapter, clientPersistenceAdapter, movementOutputPort);
     }
 
 
@@ -91,8 +92,8 @@ public class BeanConfiguration {
      * Movement Config
      */
     @Bean
-    public MovementPersistenceAdapter movementPersistenceAdapter(MovementRepository repository, MovementPersistenceMapper mapper) {
-        return new MovementPersistenceAdapter(repository, mapper);
+    public MovementPersistenceAdapter movementPersistenceAdapter(MovementRepository repository, MovementPersistenceMapper mapper, AccountPersistenceMapper accountPersistenceMapper) {
+        return new MovementPersistenceAdapter(repository, mapper, accountPersistenceMapper);
     }
 
     @Bean
